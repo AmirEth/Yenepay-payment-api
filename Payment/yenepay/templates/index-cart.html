@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+</head>
+
+<body>
+    <h3>yenepay</h3>
+
+    <form action="https://test.yenepay.com/" method="POST">
+        {% csrf_token %}
+        {% for item in products %}
+        <input type="text" name="Process" value="Express">
+        <input type="text" name="MerchantOrderId" value="">
+        <input type="text" name="MerchantId" value="SB2227">
+        <input type="text" name="IPNUrl" value="">
+        <input type="text" name="SuccessUrl" value="http://localhost:8000/success">
+        <input type="text" name="CancelUrl" value="http://localhost:8000/cancel">
+        <input type="text" name="ItemId" value="d876e471-4c29-40f8-8144-c5c6ffdbcc01">
+        <input type="text" name="ItemName" value="{{item.product_name}}">
+        <input type="text" name="UnitPrice" value="{{item.price}}">
+        <input type="text" name="Quantity" value="{{item.quantity}}">
+        <input type="submit" value="Purchase">
+        {% endfor %}
+    </form>
+</body>
+
+</html>
